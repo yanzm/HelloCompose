@@ -14,6 +14,17 @@ class Screen1Activity : ComponentActivity() {
         // activity_screen1.xml をこの画面の UI としてセットする
         setContentView(R.layout.activity_screen1)
 
-        // TODO
+        // id を使って TextView を取得する
+        val textView = findViewById<TextView>(R.id.textView)
+
+        // id を使って Button を取得する
+        val button = findViewById<Button>(R.id.button)
+
+        // button がクリックされたときの処理
+        button.setOnClickListener {
+            Random.nextInt()
+            // TODO: 1 ~ 6 のランダムな数字を表示する
+            textView.text = "Hello"
+        }
     }
 }

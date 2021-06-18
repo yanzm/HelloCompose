@@ -34,8 +34,21 @@ class Screen1ComposeActivity : ComponentActivity() {
 
 @Composable
 fun HelloScreen() {
-    // TODO
-    Text(text = "Hello")
+    val text: MutableState<String> = remember { mutableStateOf("ボタンをクリックしてね") }
+
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Text(text = text.value)
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button(onClick = { text.value = "Hello" }) {
+            Text(text = "Button")
+        }
+    }
 }
 
 @Preview

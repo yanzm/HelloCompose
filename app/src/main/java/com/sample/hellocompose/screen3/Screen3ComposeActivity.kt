@@ -35,8 +35,24 @@ class Screen3ComposeActivity : ComponentActivity() {
 
 @Composable
 fun HelloScreen3() {
-    // TODO
-    Text(text = "Hello")
+    val text: MutableState<String> = remember {
+        mutableStateOf("")
+    }
+
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        TextField(value = text.value, onValueChange = { text.value = it })
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        val enabled = true // TODO
+        Button(onClick = { }, enabled = enabled) {
+            Text("Button")
+        }
+    }
 }
 
 @Preview

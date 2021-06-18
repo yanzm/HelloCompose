@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -31,8 +30,24 @@ class Screen4ComposeActivity : ComponentActivity() {
 
 @Composable
 fun HelloScreen4() {
-    // TODO
-    Text(text = "Hello")
+    val text: MutableState<String> = remember {
+        mutableStateOf("")
+    }
+
+    val acceptedChars = remember { arrayOf('1', '2', '3', '4') }
+
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        TextField(
+            value = text.value,
+            onValueChange = {
+                text.value = it.filter { it in acceptedChars }
+            }
+        )
+    }
 }
 
 @Preview

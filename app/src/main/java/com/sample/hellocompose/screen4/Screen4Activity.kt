@@ -14,6 +14,32 @@ class Screen4Activity : ComponentActivity() {
         // activity_screen4.xml をこの画面の UI としてセットする
         setContentView(R.layout.activity_screen4)
 
-        // TODO
+        // id を使って EditText を取得する
+        val editText = findViewById<EditText>(R.id.editText)
+
+        // 1, 2, 3, 4 だけ入力できるようにする
+        editText.filters = arrayOf(
+            object : InputFilter {
+
+                val acceptedChars = arrayOf('1', '2', '3', '4')
+
+                override fun filter(
+                    source: CharSequence,
+                    start: Int,
+                    end: Int,
+                    dest: Spanned?,
+                    dstart: Int,
+                    dend: Int
+                ): CharSequence? {
+                    val length = end - start
+                    val filtered = source.subSequence(start, end).filter { it in acceptedChars }
+                    return if (filtered.length == length) {
+                        null
+                    } else {
+                        filtered
+                    }
+                }
+            }
+        )
     }
 }

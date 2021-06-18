@@ -33,8 +33,24 @@ class Screen2ComposeActivity : ComponentActivity() {
 
 @Composable
 fun HelloScreen2() {
-    // TODO
-    Text(text = "Hello")
+    val isChecked = remember { mutableStateOf(false) }
+
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        if (isChecked.value) {
+            Text(text = "Hello World")
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Checkbox(
+            checked = isChecked.value,
+            onCheckedChange = { isChecked.value = it }
+        )
+    }
 }
 
 @Preview
